@@ -1,0 +1,10 @@
+C:\Study\computer_graphics\lab_9\lab_9\bin\Debug\lab_9.exe.config
+C:\Study\computer_graphics\lab_9\lab_9\bin\Debug\lab_9.exe
+C:\Study\computer_graphics\lab_9\lab_9\bin\Debug\lab_9.pdb
+C:\Study\computer_graphics\lab_9\lab_9\obj\Debug\lab_9.csproj.AssemblyReference.cache
+C:\Study\computer_graphics\lab_9\lab_9\obj\Debug\lab_9.csproj.SuggestedBindingRedirects.cache
+C:\Study\computer_graphics\lab_9\lab_9\obj\Debug\lab_9.Properties.Resources.resources
+C:\Study\computer_graphics\lab_9\lab_9\obj\Debug\lab_9.csproj.GenerateResource.cache
+C:\Study\computer_graphics\lab_9\lab_9\obj\Debug\lab_9.csproj.CoreCompileInputs.cache
+C:\Study\computer_graphics\lab_9\lab_9\obj\Debug\lab_9.exe
+C:\Study\computer_graphics\lab_9\lab_9\obj\Debug\lab_9.pdb
