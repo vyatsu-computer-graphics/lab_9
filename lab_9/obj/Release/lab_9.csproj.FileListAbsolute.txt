@@ -9,3 +9,14 @@ C:\Study\computer_graphics\lab_9\lab_9\obj\Release\lab_9.csproj.GenerateResource
 C:\Study\computer_graphics\lab_9\lab_9\obj\Release\lab_9.csproj.CoreCompileInputs.cache
 C:\Study\computer_graphics\lab_9\lab_9\obj\Release\lab_9.exe
 C:\Study\computer_graphics\lab_9\lab_9\obj\Release\lab_9.pdb
+D:\Study\term_6\computer_graphics\lab_9\lab_9\bin\Release\lab_9.exe.config
+D:\Study\term_6\computer_graphics\lab_9\lab_9\bin\Release\lab_9.exe
+D:\Study\term_6\computer_graphics\lab_9\lab_9\bin\Release\lab_9.pdb
+D:\Study\term_6\computer_graphics\lab_9\lab_9\obj\Release\lab_9.csproj.AssemblyReference.cache
+D:\Study\term_6\computer_graphics\lab_9\lab_9\obj\Release\lab_9.csproj.SuggestedBindingRedirects.cache
+D:\Study\term_6\computer_graphics\lab_9\lab_9\obj\Release\lab_9.Form1.resources
+D:\Study\term_6\computer_graphics\lab_9\lab_9\obj\Release\lab_9.Properties.Resources.resources
+D:\Study\term_6\computer_graphics\lab_9\lab_9\obj\Release\lab_9.csproj.GenerateResource.cache
+D:\Study\term_6\computer_graphics\lab_9\lab_9\obj\Release\lab_9.csproj.CoreCompileInputs.cache
+D:\Study\term_6\computer_graphics\lab_9\lab_9\obj\Release\lab_9.exe
+D:\Study\term_6\computer_graphics\lab_9\lab_9\obj\Release\lab_9.pdb

@@ -23,6 +23,8 @@ namespace lab_9
         const double min = 1e-6;
         const double max = 1e+6;
 
+        private int task = -1;
+
         private struct Complex
         {
             public double x;
@@ -42,7 +44,7 @@ namespace lab_9
         {
             InitStartPoints();
         }
-
+        
         private void InitStartPoints()
         {
             var centerX = ClientSize.Width / 2;
@@ -52,15 +54,31 @@ namespace lab_9
             B = new Point(centerX + size / 2, centerY - size / 3);
             C = new Point(centerX, centerY + size / 3);
         }
-        
+
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
-            //SerpTriangle(e.Graphics, n, A, B, C);
-            //Mandelbrot(e.Graphics, n);
-            //Tree(e.Graphics, 200, Math.PI / 4);
-            //Dragon(e.Graphics);
-            Newton(e.Graphics);
+            switch (task)
+            {
+                case 0:
+                    SerpTriangle(e.Graphics, 5, A, B, C);
+                    break;
+                case 1:
+                    Mandelbrot(e.Graphics, n);
+                    break;
+                case 2:
+                    Tree(e.Graphics, 200, Math.PI / 4);
+                    break;
+                case 3:
+                    Dragon(e.Graphics);
+                    break;
+                case 4:
+                    Newton(e.Graphics);
+                    break;
+                case 5:
+                    KochStar(e.Graphics);
+                    break;
+            }
         }
 
         private void SerpTriangle(Graphics graph, int n, Point a, Point b, Point c)
@@ -77,7 +95,7 @@ namespace lab_9
             var ca = new Point((c.X + a.X) / 2, (c.Y + a.Y) / 2);
             
             SerpTriangle(graph, n - 1, ab, a, ca);
-            SerpTriangle(graph, n - 1, b, ab, bc);
+            SerpTriangle( graph, n - 1, b, ab, bc);
             SerpTriangle(graph, n - 1, bc, ca, c);
         }
         
@@ -211,10 +229,82 @@ namespace lab_9
                 graph.DrawRectangle(MyPen, mx + x, my + y, 1, 1);
             }
         }
+
+        private void KochStar(Graphics graph)
+        {
+            int size = 800;
+            var point1 = new PointF(ClientSize.Width / 2 - size / 2, ClientSize.Height / 2 - size / 3);
+            var point2 = new PointF(ClientSize.Width / 2 + size / 2, ClientSize.Height / 2 - size / 3);
+            var point3 = new PointF(ClientSize.Width / 2, ClientSize.Height / 2 + size / 3);
+            
+            graph.DrawLine(MyPen, point1, point2);
+            graph.DrawLine(MyPen, point2, point3);
+            graph.DrawLine(MyPen, point3, point1);
+ 
+            DrawKoch(graph, point1, point2, point3, 5);
+            DrawKoch(graph, point2, point3, point1, 5);
+            DrawKoch(graph, point3, point1, point2, 5);
+        }
+        
+        private void DrawKoch(Graphics graph, PointF p1, PointF p2, PointF p3, int iter)
+        {
+            if (iter <= 0) return;
+            var p4 = new PointF((p2.X + 2 * p1.X) / 3, (p2.Y + 2 * p1.Y) / 3);
+            var p5 = new PointF((2 * p2.X + p1.X) / 3, (p1.Y + 2 * p2.Y) / 3);
+            var ps = new PointF((p2.X + p1.X) / 2, (p2.Y + p1.Y) / 2);
+            var pn = new PointF((4 * ps.X - p3.X) / 3, (4 * ps.Y - p3.Y) / 3);
+            graph.DrawLine(MyPen, p4, pn);
+            graph.DrawLine(MyPen, p5, pn);
+            MyPen.Color = Color.Aqua;
+            graph.DrawLine(MyPen, p4, p5);
+            MyPen.Color = Color.Black;
+ 
+ 
+            DrawKoch(graph, p4, pn, p5, iter - 1);
+            DrawKoch(graph, pn, p5, p4, iter - 1);
+            DrawKoch(graph, p1, p4, new PointF((2 * p1.X + p3.X) / 3, (2 * p1.Y + p3.Y) / 3), iter - 1);
+            DrawKoch(graph, p5, p2, new PointF((2 * p2.X + p3.X) / 3, (2 * p2.Y + p3.Y) / 3), iter - 1);
+        }
         
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             MyPen.Dispose();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            task = 0;
+            Invalidate();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            task = 1;
+            Invalidate();
+        }
+        
+        private void button3_Click(object sender, EventArgs e)
+        {
+            task = 2;
+            Invalidate();
+        }
+        
+        private void button4_Click(object sender, EventArgs e)
+        {
+            task = 3;
+            Invalidate();
+        }
+        
+        private void button5_Click(object sender, EventArgs e)
+        {
+            task = 4;
+            Invalidate();
+        }
+        
+        private void button6_Click(object sender, EventArgs e)
+        {
+            task = 5;
+            Invalidate();
         }
     }
 }
