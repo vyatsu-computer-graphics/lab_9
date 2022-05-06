@@ -64,7 +64,7 @@ namespace lab_9
                     SerpTriangle(e.Graphics, 5, A, B, C);
                     break;
                 case 1:
-                    Mandelbrot(e.Graphics, n);
+                    Mandelbrot(e.Graphics, 2, -2, 2, -2);
                     break;
                 case 2:
                     Tree(e.Graphics, 200, Math.PI / 4);
@@ -99,9 +99,9 @@ namespace lab_9
             SerpTriangle(graph, n - 1, bc, ca, c);
         }
         
-        private void Mandelbrot(Graphics graph, int N)
+        private void Mandelbrot(Graphics graph, double maxr, double minr, double maxi, double mini)
         {
-            int iterations = N, max = 10;
+            /*int iterations = N, max = 4;
             int xc, yc;            
             int x, y, n;
             double p, q;             
@@ -127,12 +127,42 @@ namespace lab_9
                         z.x = c.x * p - c.y * q;
                         z.y = c.x * q + c.y * p;
                         n++;
+                        
+                        if (z.x > 1)
+                        {
+                            break;
+                        }
                     }
 
                     if (n >= iterations) continue;
                     
                     MyPen.Color = Color.FromArgb(255, 0, n * 15 % 255, n * 20 % 255);
                     graph.DrawRectangle(MyPen, xc + x, yc + y, 1, 1);
+                }
+            }*/
+            
+            double xjump = (maxr - minr) / Convert.ToDouble(ClientSize.Width);
+            double yjump = (maxi - mini) / Convert.ToDouble(ClientSize.Height);
+            int loopmax = 50;
+            for (int x = 0; x < ClientSize.Width; x++)
+            {
+                double cx = xjump * x - Math.Abs(minr);
+                for (int y = 0; y < ClientSize.Height; y++)
+                {
+                    double zx = 0;
+                    double zy = 0;
+                    double cy = yjump * y - Math.Abs(mini);
+                    int curLoop = 0;
+                    while (zx * zx + zy * zy <= 10 && curLoop < loopmax)
+                    {
+                        curLoop++;
+                        double tempzx = zx;
+                        zx = zx * zx - zy * zy + cx;
+                        zy = 2 * tempzx * zy+ cy;
+                    }
+
+                    MyPen.Color = curLoop != loopmax ? Color.FromArgb(255, curLoop * 10 % 255, curLoop * 15 % 255, curLoop * 20 % 255) : Color.White;
+                    graph.DrawRectangle(MyPen, x, y, 1, 1);
                 }
             }
         }
@@ -232,14 +262,14 @@ namespace lab_9
 
         private void KochStar(Graphics graph)
         {
-            int size = 800;
+            int size = 700;
             var point1 = new PointF(ClientSize.Width / 2 - size / 2, ClientSize.Height / 2 - size / 3);
             var point2 = new PointF(ClientSize.Width / 2 + size / 2, ClientSize.Height / 2 - size / 3);
             var point3 = new PointF(ClientSize.Width / 2, ClientSize.Height / 2 + size / 3);
             
-            graph.DrawLine(MyPen, point1, point2);
+            /*graph.DrawLine(MyPen, point1, point2);
             graph.DrawLine(MyPen, point2, point3);
-            graph.DrawLine(MyPen, point3, point1);
+            graph.DrawLine(MyPen, point3, point1);*/
  
             DrawKoch(graph, point1, point2, point3, 5);
             DrawKoch(graph, point2, point3, point1, 5);
@@ -253,11 +283,15 @@ namespace lab_9
             var p5 = new PointF((2 * p2.X + p1.X) / 3, (p1.Y + 2 * p2.Y) / 3);
             var ps = new PointF((p2.X + p1.X) / 2, (p2.Y + p1.Y) / 2);
             var pn = new PointF((4 * ps.X - p3.X) / 3, (4 * ps.Y - p3.Y) / 3);
-            graph.DrawLine(MyPen, p4, pn);
-            graph.DrawLine(MyPen, p5, pn);
-            MyPen.Color = Color.Aqua;
+            if (iter == 1)
+            {
+                graph.DrawLine(MyPen, p4, pn);
+                graph.DrawLine(MyPen, p5, pn);
+            }
+            
+            /*MyPen.Color = Color.Aqua;
             graph.DrawLine(MyPen, p4, p5);
-            MyPen.Color = Color.Black;
+            MyPen.Color = Color.Black;*/
  
  
             DrawKoch(graph, p4, pn, p5, iter - 1);
